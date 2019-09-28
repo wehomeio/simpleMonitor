@@ -1,44 +1,27 @@
 base_config:
-  dry_run: # whether upload to cloud
-  delete_tmp_file: # debug purpose; whether to delete tmp file; default to true
-  tmp_folder: '/tmp' # tmp folder to hold db dump files
-  passphrase: 'verysecure' # passphrase to encrypt dumped files
-  log_file: 'backup.log' 
-  log_level: # DEBUG, INFO, WARNING, ERROR
+  dry_run: True
+  delete_tmp_file: False
+  tmp_folder: '/tmp'
+  passphrase: 'verysecure'
+  log_file: 'monitor.log'
+  log_level: DEBUG
 
-qiniu_config: # it could be s3_config or other cloud services
-  access_key: 
-  secret_key: 
-  bucket_name: 
-  is_s3: false
+lark_config:
+  webhook: https://oapi.zjurl.cn/open-apis/bot/hook/xxxxxxxx
 
 sql_config:
   - host: localhost
-    database: 
-    username: 
+    database: wehomeInvest
+    tables:
+      - wehome_order
+      - wehome_project_share
+      - wehome_project_member
+      - partner_commission
+      - transaction_history
+      - income_detail
+      - referral_tracking
+    username: root
     password: ''
-    interval: # minutes to do back up
-    interval_unit: # second or minute or hour
-    prefix: test-db-backup # dumped file prefix
-    suffix: sql.gzip.encrypted # dumped file suffix
-    expired: 2 # days to store the backed file
-
-redis_config:
-  rdb_path: /usr/local/var/db/redis/dump.rdb # path to rdb file
-  interval: # minutes to do back up
-  interval_unit: # second or minute or hour
-  prefix: test-redis-backup
-  suffix: rdb.gzip.encrypted
-  expired: 1
-
-mongo_config:
-  - host: localhost
-    database: 
-    username: 
-    password: ''
-    interval: # minutes to do back up
-    interval_unit: # second or minute or hour
-    prefix: test-mongo-backup # dumped file prefix
-    suffix: sql.gzip.encrypted # dumped file suffix
-    ds_start: # start date to backup  2018-01-02
-    ds_end:  # end date to backup  2018-01-09
+    interval: 10
+    interval_unit: minute
+    expired: 2

@@ -18,7 +18,7 @@ import re
 from helper import with_logging
 from main import logger
 
-LINE_LENGTH = 80
+LINE_LENGTH = 120
 MSG_LENGTH = 600
 SPLIT_KEYWORD = 'INSERT'
 
